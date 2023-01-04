@@ -19,8 +19,6 @@ void loop() {
     int a;
     Serial.println(analogRead(A1));
 
-    Serial.println(analogRead(A0));
-
     //forward
     drive(200,200);
     delay(1000);

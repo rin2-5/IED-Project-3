@@ -10,6 +10,7 @@ void setup() {
     pinMode(Left2, OUTPUT);
     //INFRARED
     Serial.begin(9600);
+
     //FUNCTIONS
     void drive(int Rspeed, int Lspeed);
 }
@@ -17,47 +18,48 @@ void setup() {
 void loop() {
     int a;
     Serial.println(analogRead(A1));
-    //  //forward
-    //  drive(200,200);
-    //  delay(1000);
-    //  drive(0,0);
-    //  
-    //  //reverse
-    //  drive(-255,-255);
-    //  delay(1000);
-    //  drive(0,0);
-    //  
-    //  //spin on the spot
-    //  drive(-255,255);//anticlockwise
-    //  delay(1000);
-    //  drive(0,0);
-    //  drive(255,-255);//clockwise
-    //  delay(1000);
-    //  drive(0,0);
-    //  
-    //  //forward right
-    //  drive(200,130);
-    //  delay(1000);
-    //  drive(0,0);
-    //  
-    //  //forward left
-    //  drive(130,200);
-    //  delay(1000);
-    //  drive(0,0);
-    //  
-    //  //reverse right
-    //  drive(-80,-180);
-    //  delay(1000);
-    //  drive(0,0);
-    //  
-    //  //reverse left
-    //  drive(-180,-80);
-    //  delay(1000);
-    //  drive(0,0);
-    //  
-    //  //Stop
-    //  drive(0,0);
-    //  delay(1000);
+
+    //forward
+    drive(200,200);
+    delay(1000);
+    drive(0,0);
+     
+    //reverse
+    drive(-255,-255);
+    delay(1000);
+    drive(0,0);
+  
+    //spin on the spot
+    drive(-255,255);//anticlockwise
+    delay(1000);
+    drive(0,0);
+    drive(255,-255);//clockwise
+    delay(1000);
+    drive(0,0);
+    
+    //forward right
+    drive(200,130);
+    delay(1000);
+    drive(0,0);
+    
+    //forward left
+    drive(130,200);
+    delay(1000);
+    drive(0,0);
+    
+    //reverse right
+    drive(-80,-180);
+    delay(1000);
+    drive(0,0);
+ 
+    //reverse left
+    drive(-180,-80);
+    delay(1000);
+    drive(0,0);
+
+    //Stop
+    drive(0,0);
+    delay(1000);
 
 
 }

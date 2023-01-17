@@ -21,6 +21,17 @@ void setup() {
     lcd.setCursor(0, 0);
     lcd.print("Guide Dog-in-Training");
 
+    //TARGET BOARD 
+
+    //ULTRASOUND & BUZZER 
+#define buzzer 9
+#define Tri_pin 11
+#define Echo_pin 10
+    Serial.begin(9600);
+    pinMode(Tri_pin, OUTPUT);
+    pinMode(Echo_pin, INPUT);
+    pinMode(buzzer, OUTPUT);
+
     //FUNCTIONS
     void drive(int Rspeed, int Lspeed);
 }
@@ -82,6 +93,22 @@ void loop() {
   //TARGET BOARD 
 
   //ULTRASOUND & BUZZER 
+    digitalWrite(Tri_pin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(Tri_pin, LOW);
+    delayMicroseconds(10);
+    int dis = pulseIn(Echo_pin, HIGH) / 58;
+    Serial.print(dis);
+    Serial.println(" cm");
+    if (dis < 10) {
+        for (int i = 0; i < 100; i++) {
+            digitalWrite(buzzer, HIGH); // send high signal to buzzer 
+            delay(1); // delay 1ms
+            digitalWrite(buzzer, LOW); // send low signal to buzzer
+            delay(1);
+        }
+    }
+    else digitalWrite(buzzer, LOW);
 }
 
 //FUNCTIONS 

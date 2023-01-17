@@ -6,14 +6,6 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 // addr,en,rw,rs,d4,d5,d6,d7,bl,blpol
 // addr can be 0x3F or 0x27
 
-const char message[] = "This is a scrolling message on an LCD"; // message to scroll
-
-
-int messageLen = sizeof(message) - 1; // length of message
-int pos = 0; // position of scrolling message
-unsigned long time = 0;
-unsigned long interval = 100;
-
 
 void setup() {
     //MOTORS
@@ -32,13 +24,29 @@ void setup() {
     void drive(int Rspeed, int Lspeed);
 
     //LCD
-    lcd.init();            // initialize the lcd
-    lcd.backlight();       // turn on the backlight
+  
+    Serial.begin(9600);
+    lcd.begin(16, 2);
+    lcd.backlight();
+    lcd.setCursor(0, 0);
+    lcd.print("Scrolling Texttttttttt");
 
 
 }
 
 void loop() {
+
+    for (int i = 0; i < 15; i++) {
+        lcd.scrollDisplayLeft();
+        delay(200);
+    }
+    for (int i = 0; i < 15; i++) {
+        lcd.scrollDisplayRight();
+        delay(200);
+    }
+
+
+
     int a;
     Serial.println(analogRead(A1));
 
@@ -83,20 +91,7 @@ void loop() {
     //Stop
     drive(0,0);
     delay(1000);
-    //LCD
-    if (millis() - time > interval) {
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        lcd.print(message + pos);
-
-        if (pos < messageLen - 16) {
-            pos++;
-        }
-        else {
-            pos = 0;
-        }
-        time = millis();
-    }
+    
 
 }
 
